@@ -1,0 +1,10 @@
+.fondo {
+    background-color: lightgreen;
+}
+
+.texto_home {
+    text-align: center;
+    color: black;
+    font-family: "Mr Dafoe", cursive;
+    font-size: 20px;
+}

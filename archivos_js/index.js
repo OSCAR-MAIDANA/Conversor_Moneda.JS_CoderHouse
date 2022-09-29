@@ -35,30 +35,47 @@ function conversion(moneda, cantidad) {
     }
 }
 while (moneda !== "ESC") {
-    alert(`Ud está convirtiendo la cantidad de ${moneda} y Ud recibe la cantidad de  : 
+    alert(`Ud está convirtiendo la cantidad de $ ${cantidad} ${moneda} y recibe la cantidad de  : 
     ${conversion(moneda, cantidad)} dolares`);
-    moneda = prompt("Ingrese tipo de moneda a convertir a usd (solo monedas del mercosur)");
+    moneda = prompt("Ingrese tipo de moneda a convertir a USD (solo monedas del mercosur)");
     if (moneda !== "ESC") {
         cantidad = parseInt(prompt("Ingrese la cantidad que quiere convertir"));
     } else {
-        alert("Ud salio del conversor de moneda")
+        alert("Ud salio de la sección conversor de moneda")
     }
 }
 
-const cotizacionMonedas = [
-    { moneda: "ARS",  precio: 280.0 },
+/* const cotizacionMonedas = [
+    { moneda: "ARS", precio: 280.0 },
     { moneda: "REAL", precio: 0.19 },
-    { moneda: "UYU",  precio: 40.99 },
-    { moneda: "CLP",  precio: 892.51 },
-    { moneda: "BS",   precio: 6.92 },
-    { moneda: "PYG",  precio: 6093.65 },
-];
-// filter: filtra todos los elementos que cumplan la condicion
- let monedaCotizada = prompt("Ingrese la moneda a consultar la cotizacion");
- let filtrado = cotizacionMonedas.filter(item => item.moneda === monedaCotizada);
+    { moneda: "UYU", precio: 40.99 },
+    { moneda: "CLP", precio: 892.51 },
+    { moneda: "BS", precio: 6.92 },
+    { moneda: "PYG", precio: 6093.65 },
+]; */
 
- filtrado.forEach((item) => {
-    let mensaje = `El precio de la ${item.moneda} es de ${item.precio} por dolar`;
+
+class monedas {
+    constructor(nombreMoneda, valor) {
+        this.name = nombreMoneda;
+        this.value = valor;
+    }
+}
+
+const moneda1 = new monedas("ARS", 280.0);
+const moneda2 = new monedas("REAL", 0.19);
+const moneda3 = new monedas("UYU", 40.99);
+const moneda4 = new monedas("CLP", 892.51);
+const moneda5 = new monedas("BS", 6.92);
+const moneda6 = new monedas("PYG", 6093.65);
+
+
+// filter: filtra todos los elementos que cumplan la condicion
+let monedaCotizada = prompt("Ingrese la moneda a consultar la cotizacion");
+let filtrado = monedas.filter(item => item.name === monedaCotizada);
+
+filtrado.forEach((item) => {
+    let mensaje = `El precio de la ${item.name} es de ${item.value} por dolar`;
     alert(mensaje);
- })
+})
 

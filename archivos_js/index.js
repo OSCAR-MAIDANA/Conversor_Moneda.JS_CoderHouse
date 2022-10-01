@@ -69,11 +69,13 @@ const moneda4 = new monedas("CLP", 892.51);
 const moneda5 = new monedas("BS", 6.92);
 const moneda6 = new monedas("PYG", 6093.65);
 
-monedas.push(moneda1,moneda2,moneda3,moneda4,moneda5,moneda6);
+tipoMonedas = [];
+
+tipoMonedas.push(moneda1,moneda2,moneda3,moneda4,moneda5,moneda6);
 
 // filter: filtra todos los elementos que cumplan la condicion
 let monedaCotizada = prompt("Ingrese la moneda a consultar la cotizacion");
-let filtrado = monedas.filter(item => item.name === monedaCotizada);
+let tipoMonedas = monedas.filter(item => item.name === monedaCotizada);
 
 
 filtrado.forEach((item) => {

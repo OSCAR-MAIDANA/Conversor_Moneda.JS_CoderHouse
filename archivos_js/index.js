@@ -1,4 +1,6 @@
-let moneda = prompt("Ingrese tipo de moneda a convertir a usd  (sólo monedas del mercosur)");
+
+
+/* let moneda = prompt("Ingrese tipo de moneda a convertir a usd  (sólo monedas del mercosur)");
 let cantidad = parseInt(prompt("Ingrese la cantidad que quiere convertir"));
 
 function conversion(moneda, cantidad) {
@@ -44,42 +46,45 @@ while (moneda !== "ESC") {
         alert("Ud salio de la sección conversor de moneda")
     }
 }
+ */
 
-/* const cotizacionMonedas = [
-    { moneda: "ARS", precio: 280.0 },
-    { moneda: "REAL", precio: 0.19 },
-    { moneda: "UYU", precio: 40.99 },
-    { moneda: "CLP", precio: 892.51 },
-    { moneda: "BS", precio: 6.92 },
-    { moneda: "PYG", precio: 6093.65 },
-]; */
-
-
+const card = document.getElementById("card");
 class monedas {
-    constructor(nombreMoneda, valor) {
+    constructor(id,nombreMoneda, valor,nombreImagen,rutaImagen) {
+        this.id = id
         this.name = nombreMoneda;
-        this.value = valor;
+        this.price = valor;
+        this.img = nombreImagen;
+        this.rutaImagen = rutaImagen;
     }
 }
+const moneda1 = new monedas(1,"ARS", 280.0,"PesosArgentinos","./imagenes/pesos_ars.jpg")
+const moneda2 = new monedas(2,"REAL", 0.19,"RealesBrasileños","./imagenes/reales_br.jpg");
+const moneda3 = new monedas(3,"UYU", 40.99, "PesosUruguayos","./imagenes/pesos _uyu1.jpg");
+const moneda4 = new monedas(4,"CLP", 892.51,"PesosChilenos","./imagenes/pesos_clp.jpg");
+const moneda5 = new monedas(5,"BS", 6.92,"PesosBolivianos","./imagenes/pesos _bs.jpg");
+const moneda6 = new monedas(6,"PYG", 6093.65,"PesosParaguayos","./imagenes/pesos_pyg.jpg");
 
-const moneda1 = new monedas("ARS", 280.0);
-const moneda2 = new monedas("REAL", 0.19);
-const moneda3 = new monedas("UYU", 40.99);
-const moneda4 = new monedas("CLP", 892.51);
-const moneda5 = new monedas("BS", 6.92);
-const moneda6 = new monedas("PYG", 6093.65);
+const tipoMonedas = [];
+tipoMonedas.push(moneda1, moneda2, moneda3, moneda4, moneda5, moneda6);
 
-tipoMonedas = [];
+// -- filter: filtra todos los elementos que cumplan la condicion -- //
+/* let monedaCotizada = prompt("Ingrese la moneda a consultar la cotizacion");
+let filtrado = tipoMonedas.filter(item => item.name === monedaCotizada); */
 
-tipoMonedas.push(moneda1,moneda2,moneda3,moneda4,moneda5,moneda6);
-
-// filter: filtra todos los elementos que cumplan la condicion
-let monedaCotizada = prompt("Ingrese la moneda a consultar la cotizacion");
-let tipoMonedas = monedas.filter(item => item.name === monedaCotizada);
-
-
-filtrado.forEach((item) => {
-    let mensaje = `El precio de la ${item.name} es de ${item.value} por dolar`;
-    alert(mensaje);
+tipoMonedas.forEach(item =>{
+    let monedaRenderizada = document.createElement("div")
+    monedaRenderizada.innerHTML = `
+    <h5 class="card-title"> ${item.nombreMoneda}</h5>
+    <span class="valor"> valor: $${item.valor}</span>
+    <img class="imagenMoneda"> src="${item.rutaImagen}"</img>
+    `
+    card.append(monedaRenderizada)
 })
 
+//-- Recorre el array y se muestra si el ingreso cumple con la condicion -- //
+/* filtrado.forEach((item) => {
+    let mensaje = `El precio de la ${item.name} es de ${price.value} por dolar`;
+    alert(mensaje);
+})
+ */

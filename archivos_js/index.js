@@ -1,9 +1,11 @@
+const card = document.getElementById("card");
+const boton = document.getElementById("boton");
 
 
 /* let moneda = prompt("Ingrese tipo de moneda a convertir a usd  (sólo monedas del mercosur)");
-let cantidad = parseInt(prompt("Ingrese la cantidad que quiere convertir"));
+let cantidad = parseInt(prompt("Ingrese la cantidad que quiere convertir")); */
 
-function conversion(moneda, cantidad) {
+/* function conversion(moneda, cantidad) {
     switch (moneda) {
         case "ars":
             let totalArs = Math.round(cantidad / 280);
@@ -47,23 +49,21 @@ while (moneda !== "ESC") {
     }
 }
  */
-
-const card = document.getElementById("card");
 class monedas {
-    constructor(id,nombreMoneda, valor,nombreImagen,rutaImagen) {
-        this.id = id
-        this.name = nombreMoneda;
-        this.price = valor;
-        this.img = nombreImagen;
+    constructor(id, nombre, precio,imagen, rutaImagen) {
+        this.id = id;
+        this.nombre = nombre;
+        this.precio = precio;
+        this.img = imagen;
         this.rutaImagen = rutaImagen;
     }
 }
-const moneda1 = new monedas(1,"ARS", 280.0,"PesosArgentinos","./imagenes/pesos_ars.jpg")
-const moneda2 = new monedas(2,"REAL", 0.19,"RealesBrasileños","./imagenes/reales_br.jpg");
-const moneda3 = new monedas(3,"UYU", 40.99, "PesosUruguayos","./imagenes/pesos _uyu1.jpg");
-const moneda4 = new monedas(4,"CLP", 892.51,"PesosChilenos","./imagenes/pesos_clp.jpg");
-const moneda5 = new monedas(5,"BS", 6.92,"PesosBolivianos","./imagenes/pesos _bs.jpg");
-const moneda6 = new monedas(6,"PYG", 6093.65,"PesosParaguayos","./imagenes/pesos_pyg.jpg");
+const moneda1 = new monedas(1, "ARS", 280.0, "PesosArgentinos", "./imagenes/pesos_ars.jpg")
+const moneda2 = new monedas(2, "REAL", 0.19, "RealesBrasileños", "./imagenes/reales_br.jpg");
+const moneda3 = new monedas(3, "UYU", 40.99, "PesosUruguayos", "./imagenes/pesos_uyu.jpg");
+const moneda4 = new monedas(4, "CLP", 892.51, "PesosChilenos", "./imagenes/pesos_clp.jpg");
+const moneda5 = new monedas(5, "BS", 6.92, "PesosBolivianos", "./imagenes/pesos_bs.jpg");
+const moneda6 = new monedas(6, "PYG", 6093.65, "PesosParaguayos", "./imagenes/pesos_pyg.jpg");
 
 const tipoMonedas = [];
 tipoMonedas.push(moneda1, moneda2, moneda3, moneda4, moneda5, moneda6);
@@ -72,19 +72,47 @@ tipoMonedas.push(moneda1, moneda2, moneda3, moneda4, moneda5, moneda6);
 /* let monedaCotizada = prompt("Ingrese la moneda a consultar la cotizacion");
 let filtrado = tipoMonedas.filter(item => item.name === monedaCotizada); */
 
-tipoMonedas.forEach(item =>{
-    let monedaRenderizada = document.createElement("div")
-    monedaRenderizada.innerHTML = `
-    <h5 class="card-title"> ${item.nombreMoneda}</h5>
-    <span class="valor"> valor: $${item.valor}</span>
-    <img class="imagenMoneda"> src="${item.rutaImagen}"</img>
-    `
-    card.append(monedaRenderizada)
-})
-
 //-- Recorre el array y se muestra si el ingreso cumple con la condicion -- //
 /* filtrado.forEach((item) => {
     let mensaje = `El precio de la ${item.name} es de ${price.value} por dolar`;
     alert(mensaje);
 })
  */
+
+const carrito = []
+tipoMonedas.forEach(item => {
+    let monedaRenderizada = document.createElement("div")
+    monedaRenderizada.innerHTML = `
+    <div class="card contenedor" style="width: 17rem">
+        <img  class="card-img-top imagenMoneda"  src=${item.rutaImagen} alt="...">
+            <div class="card-body">
+                <h5 class="card-title">${item.nombre}</h5>
+                <p class="card-text">Precio $: ${item.precio}.</p>
+                <button class="btn btn-primary" id= ${item.id}>Comprar</button> 
+            </div>
+    </div>
+    `
+    card.append(monedaRenderizada)
+    const boton = document.getElementById(item.id)
+    boton.addEventListener("click", () => comprarMoneda(item))
+})
+
+const comprarMoneda = (item) => {
+    let monedaExiste = carrito.find(item => item.id === monedas.id)
+    if (monedaExiste !== undefined) {
+        monedaExiste.precio = monedaExiste.precio + item.precio
+        monedaExiste.cantidad = monedaExiste.cantidad + 1
+    } else {
+        carrito.push({
+            id: item.id,
+            nombre: item.nombre,
+            precio: item.precio,
+            img: item.imagen,
+            rutaImagen: item.rutaImagen,
+            cantidad: 1,
+        })
+    }
+}
+
+boton.addEventListener("click", () => console.log(carrito))
+

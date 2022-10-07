@@ -8,21 +8,11 @@
     font-family: "Mr Dafoe", cursive;
     font-size: 20px;
 }
-.card4{
-    margin-top: 15px;
+.imagenMoneda{
+    width: 19.8vw;
+    height: 10vw;
 }
-.card5{
-    margin-top: 15px;
-}
-.card6{
-    margin-top: 15px;
-}
-.card1{
-    margin-top: 15px;
-}
-.card2{
-    margin-top: 15px;
-}
-.card3{
-    margin-top: 15px;
+.contenedor{
+    border: 1px black solid;
+    ;
 }

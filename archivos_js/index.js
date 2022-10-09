@@ -1,5 +1,7 @@
 const card = document.getElementById("card");
 const boton = document.getElementById("boton");
+const botonVaciar = document.getElementById("BotonVaciar")
+
 
 
 /* let moneda = prompt("Ingrese tipo de moneda a convertir a usd  (sólo monedas del mercosur)");
@@ -50,7 +52,7 @@ while (moneda !== "ESC") {
 }
  */
 class monedas {
-    constructor(id, nombre, precio,imagen, rutaImagen) {
+    constructor(id, nombre, precio, imagen, rutaImagen) {
         this.id = id;
         this.nombre = nombre;
         this.precio = precio;
@@ -80,39 +82,69 @@ let filtrado = tipoMonedas.filter(item => item.name === monedaCotizada); */
  */
 
 const carrito = []
-tipoMonedas.forEach(item => {
+tipoMonedas.forEach(producto => {
     let monedaRenderizada = document.createElement("div")
     monedaRenderizada.innerHTML = `
-    <div class="card contenedor" style="width: 17rem">
-        <img  class="card-img-top imagenMoneda"  src=${item.rutaImagen} alt="...">
+        <div class="card contenedor" style="width: 17rem">
+            <img  class="card-img-top imagenMoneda"  src=${producto.rutaImagen} alt="...">
+            <h5 class="card-title">${producto.nombre}</h5>    
+            
             <div class="card-body">
-                <h5 class="card-title">${item.nombre}</h5>
-                <p class="card-text">Precio $: ${item.precio}.</p>
-                <button class="btn btn-primary" id= ${item.id}>Comprar</button> 
+                <p class="card-text">Precio $: ${producto.precio}</p>
+                    <button class="btn btn-primary" id= ${producto.id}>Comprar </button>  
+                    <button class="btn btn-primary" id= ${producto.id}>Eliminar </button>    
             </div>
-    </div>
+        </div>    
     `
     card.append(monedaRenderizada)
-    const boton = document.getElementById(item.id)
-    boton.addEventListener("click", () => comprarMoneda(item))
+    const boton = document.getElementById(producto.id)
+    boton.addEventListener("click", () => comprarMoneda(producto))
+    const botonVaciar = document.getElementById(producto.id)
+    botonVaciar.addEventListener = document.getElementById(producto.id)
+
 })
 
-const comprarMoneda = (item) => {
-    let monedaExiste = carrito.find(item => item.id === monedas.id)
+
+const comprarMoneda = (producto) => {
+    let monedaExiste = carrito.find(item => item.id === producto.id)
     if (monedaExiste !== undefined) {
-        monedaExiste.precio = monedaExiste.precio + item.precio
+        monedaExiste.precio = monedaExiste.precio + producto.precio
         monedaExiste.cantidad = monedaExiste.cantidad + 1
     } else {
         carrito.push({
-            id: item.id,
-            nombre: item.nombre,
-            precio: item.precio,
-            img: item.imagen,
-            rutaImagen: item.rutaImagen,
+            id: producto.id,
+            nombre: producto.nombre,
+            precio: producto.precio,
+            img: producto.imagen,
+            rutaImagen: producto.rutaImagen,
             cantidad: 1,
         })
     }
 }
 
+const eliminarMoneda = (producto) => {
+    let carrito = JSON.parse(localStorage.getItem("carrito"));
+    carrito = carrito.filter(item => item.nombre = !nombre);
+    localStorage.setItem("carrito", JSON.stringify(carrito))
+}
+
+/* const eliminarMoneda = (producto) => {
+    let monedaExiste = carrito.find(item => item.id === producto.id)
+    if (monedaExiste !== undefined) {
+        monedaExiste.precio = monedaExiste.precio - producto.precio
+        monedaExiste.cantidad = monedaExiste.cantidad - 1
+    } else {
+        carrito.push({
+            id: producto.id,
+            nombre: producto.nombre,
+            precio: producto.precio,
+            img: producto.imagen,
+            rutaImagen: producto.rutaImagen,
+            cantidad: -1,
+        })
+    }
+}
+ */
 boton.addEventListener("click", () => console.log(carrito))
+/* botonVaciar.addEventListener("click", () => console.log(carrito)) */
 

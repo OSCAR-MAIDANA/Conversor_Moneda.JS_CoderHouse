@@ -1,5 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 .fondo {
     background-color: rgb(104, 248, 104);
+}
+
+.contenedorcard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    height: 80%;
+
+}
+
+.contenedor {
+    border: 1px black solid;
+    margin: 1em;
+    padding: 1em;
+    text-align: center;
+}
+
+.imagenMoneda {
+    width: 19.7vw;
+    height: 10vw;
 }
 
 .texto_home {
@@ -7,12 +33,4 @@
     color: black;
     font-family: "Mr Dafoe", cursive;
     font-size: 20px;
-}
-.imagenMoneda{
-    width: 19.8vw;
-    height: 10vw;
-}
-.contenedor{
-    border: 1px black solid;
-    ;
 }

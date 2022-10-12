@@ -87,29 +87,25 @@ tipoMonedas.forEach(producto => {
     monedaRenderizada.innerHTML = `
         <div class="card contenedor" style="width: 17rem">
             <img  class="card-img-top imagenMoneda"  src=${producto.rutaImagen} alt="...">
-            <h5 class="card-title">${producto.nombre}</h5>    
-            
+            <h5 class="card-title">${producto.nombre}</h5>            
             <div class="card-body">
                 <p class="card-text">Precio $: ${producto.precio}</p>
                     <button class="btn btn-primary" id= ${producto.id}>Comprar </button>  
-                    <button class="btn btn-primary" id= ${producto.id}>Eliminar </button>    
+                    <button class="btn btn-primary" id= "eliminar ${producto.id}">Eliminar </button>    
             </div>
         </div>    
     `
     card.append(monedaRenderizada)
     const boton = document.getElementById(producto.id)
     boton.addEventListener("click", () => comprarMoneda(producto))
-    const botonVaciar = document.getElementById(producto.id)
-    botonVaciar.addEventListener = document.getElementById(producto.id)
-
+    const botonVaciar = document.getElementById(`eliminar ${producto.id}`)
+    botonVaciar.addEventListener("click", () => eliminarMoneda(producto))
 })
-
-
 const comprarMoneda = (producto) => {
     let monedaExiste = carrito.find(item => item.id === producto.id)
     if (monedaExiste !== undefined) {
         monedaExiste.precio = monedaExiste.precio + producto.precio
-        monedaExiste.cantidad = monedaExiste.cantidad + 1
+        monedaExiste.cantidad = monedaExiste.cantidad +1
     } else {
         carrito.push({
             id: producto.id,
@@ -121,30 +117,20 @@ const comprarMoneda = (producto) => {
         })
     }
 }
-
 const eliminarMoneda = (producto) => {
     let carrito = JSON.parse(localStorage.getItem("carrito"));
-    carrito = carrito.filter(item => item.nombre = !nombre);
+    carrito = carrito.find(item => item.nombre !== producto.nombre);
     localStorage.setItem("carrito", JSON.stringify(carrito))
-}
+};
 
 /* const eliminarMoneda = (producto) => {
     let monedaExiste = carrito.find(item => item.id === producto.id)
     if (monedaExiste !== undefined) {
-        monedaExiste.precio = monedaExiste.precio - producto.precio
         monedaExiste.cantidad = monedaExiste.cantidad - 1
-    } else {
-        carrito.push({
-            id: producto.id,
-            nombre: producto.nombre,
-            precio: producto.precio,
-            img: producto.imagen,
-            rutaImagen: producto.rutaImagen,
-            cantidad: -1,
-        })
     }
 }
  */
+
 boton.addEventListener("click", () => console.log(carrito))
-/* botonVaciar.addEventListener("click", () => console.log(carrito)) */
+
 

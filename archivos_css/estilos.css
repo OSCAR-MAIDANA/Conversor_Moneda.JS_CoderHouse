@@ -7,15 +7,6 @@
     background-color: rgb(104, 248, 104);
 }
 
-.contenedorcard {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    height: 80%;
-
-}
-
 .contenedor {
     border: 1px black solid;
     margin: 1em;

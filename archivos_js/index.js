@@ -1,6 +1,6 @@
-const card = document.getElementById("card");
-const boton = document.getElementById("boton");
-const botonVaciar = document.getElementById("BotonVaciar")
+const div = document.getElementById("div");
+const botonMostrarCarrito = document.getElementById("botonMostrarCarrito");
+const botonVaciarCarrito = document.getElementById("botonVaciarCarrito")
 
 
 
@@ -84,43 +84,71 @@ let filtrado = tipoMonedas.filter(item => item.name === monedaCotizada); */
 const carrito = []
 tipoMonedas.forEach(producto => {
     let monedaRenderizada = document.createElement("div")
-    monedaRenderizada.innerHTML = `
-        <div class="card contenedor" style="width: 17rem">
-            <img  class="card-img-top imagenMoneda"  src=${producto.rutaImagen} alt="...">
-            <h5 class="card-title">${producto.nombre}</h5>            
-            <div class="card-body">
-                <p class="card-text">Precio $: ${producto.precio}</p>
-                    <button class="btn btn-primary" id= ${producto.id}>Comprar </button>  
-                    <button class="btn btn-primary" id= "eliminar ${producto.id}">Eliminar </button>    
-            </div>
-        </div>    
+    monedaRenderizada.innerHTML = `         
+             <div class="card" style="width: 18rem;">
+                    <img src="${producto.rutaImagen}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${producto.nombre}</h5>
+                         <p class="card-text">Precio $: ${producto.precio}</p>
+                            <div>
+                                <button class="btn btn-primary" id= "${producto.id}">Comprar</button>
+                                <button class="btn btn-primary" id= "eliminar${producto.id}">Eliminar</button>
+                            </div> 
+                    </div>
+             </div>
     `
-    card.append(monedaRenderizada)
+    div.append(monedaRenderizada);
     const boton = document.getElementById(producto.id)
-    boton.addEventListener("click", () => comprarMoneda(producto))
-    const botonVaciar = document.getElementById(`eliminar ${producto.id}`)
-    botonVaciar.addEventListener("click", () => eliminarMoneda(producto))
-})
-const comprarMoneda = (producto) => {
-    let monedaExiste = carrito.find(item => item.id === producto.id)
-    if (monedaExiste !== undefined) {
-        monedaExiste.precio = monedaExiste.precio + producto.precio
-        monedaExiste.cantidad = monedaExiste.cantidad +1
-    } else {
+    boton.addEventListener("click", () => comprarProducto(producto))
+    const botonEliminar = document.getElementById(`eliminar ${producto.id}`)
+    boton.addEventListener("click", () => eliminarProducto(producto))
+});
+
+const comprarProducto = (producto) => {
+    let productoExiste = carrito.find(item => item.id === producto.id)
+    if (productoExiste === undefined) {
         carrito.push({
             id: producto.id,
             nombre: producto.nombre,
             precio: producto.precio,
-            img: producto.imagen,
             rutaImagen: producto.rutaImagen,
             cantidad: 1,
         })
     }
+    else {
+        productoExiste.precio = productoExiste.precio + producto.precio
+        productoExiste.cantidad = productoExiste.cantidad + 1
+    }
+    /*let carrito = JSON.parse(localStorage.getItem("carrito"));
+    let producto = carrito.find(item => item.nombre === nombre);
+    if (producto === undefined) {
+        let nuevoProducto =
+            id: id
+            nombre: nombre,
+            precio: precio,
+            img: imagen,
+            rutaImagen: rutaImagen,
+        carrito.push(nuevoProducto);
+        localStorage.setItem("carrito", JSON.stringify(carrito))
+    } */
 }
-const eliminarMoneda = (producto) => {
-    let carrito = JSON.parse(localStorage.getItem("carrito"));
-    carrito = carrito.find(item => item.nombre !== producto.nombre);
-    localStorage.setItem("carrito", JSON.stringify(carrito))
+const eliminarProducto = (producto) => {
+    /*     let carrito = JSON.parse(localStorage.getItem("carrito")); */
+    let productoExiste = carrito.find(item => item.id === producto.id)
+ /*    if (productoExiste === undefined) {
+        carrito.push({
+            id: producto.id,
+            nombre: producto.nombre,
+            precio: producto.precio,
+            rutaImagen: producto.rutaImagen,
+            cantidad: 1,
+        })
+    } */
+    if (productoExiste !== undefined){
+        productoExiste.precio = productoExiste.precio + producto.precio
+        productoExiste.cantidad = productoExiste.cantidad - 1
+    }
+   /*  localStorage.setItem("carrito", JSON.stringify(carrito)) */
 };
 
 /* const eliminarMoneda = (producto) => {
@@ -131,6 +159,10 @@ const eliminarMoneda = (producto) => {
 }
  */
 
-boton.addEventListener("click", () => console.log(carrito))
+//---- BOTON PARA MOSTRAR CARRITO ---- //
+botonMostrarCarrito.addEventListener("click", () => console.log(carrito))
+
+botonVaciarCarrito.addEventListener("click", () => console.log(carrito))
+
 
 

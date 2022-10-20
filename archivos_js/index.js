@@ -1,9 +1,14 @@
-import { traerProductos } from "../db/traerProductos.js";
+
 const div = document.getElementById("div");
 const botonMostrarCarrito = document.getElementById("botonMostrarCarrito");
 const botonVaciarCarrito = document.getElementById("botonVaciarCarrito");
 
-
+const traerProductos = async () => {
+    const response = await fetch('./db/productos.json')
+    const data = await response.json()
+    console.log(data)
+    return data
+}
 
 
 

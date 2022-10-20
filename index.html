@@ -22,33 +22,50 @@
 
 <body class="fondo">
     <header>
-        <ul class="nav justify-content-center">
+        <ul class="nav nav-pills nav-justified">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Active</a>
+                <a class="nav-link active" aria-current=" page" href="#">home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href=" #">nosotros</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
-            </li>
-            <li>
-                <button id="botonMostrarCarrito">Mostrar Carrito</button>
-                <button id="botonVaciarCarrito">Vaciar Carrito</button>
+                <button id="botonMostrarCarrito" type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    carrito
+                </button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Productos en el carrito</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              
+                            </div>
+                            <div class="modal-footer">
+                                <button id="botonVaciarCarrito" type="button" class="btn btn-primary">Vaciar
+                                    carrito</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </li>
         </ul>
         <h1 class="texto_home"> Prototipo de conversor de monedas para el Mercosur</h1>
 
     </header>
     <main>
-        <div>
-            <div id="div">
-                <!-- class="col-lg-4 contenedorcard " -->
-            </div>
+        <div id="div"></div>
         </div>
+        <!-- <div>
+            <div id="div">
+            </div>
+        </div> -->
     </main>
     <footer>
     </footer>

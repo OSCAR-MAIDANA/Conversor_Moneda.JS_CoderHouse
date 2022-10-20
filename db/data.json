@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "nombre": "ARS",
+        "precio": 280.0,
+        "img": "PesosArgentinos",
+        "rutaImagen": "./imagenes/pesos_ars.jpg"
+    },
+    {
+        "id": 2,
+        "nombre": "REAL",
+        "precio": 0.19,
+        "img": "RealesBrasileños",
+        "rutaImagen": "./imagenes/reales_br.jpg"
+    },
+    {
+        "id": 3,
+        "nombre": "UYU",
+        "precio": 40.99,
+        "img": "PesosUruguayos",
+        "rutaImagen": "./imagenes/pesos_uyu.jpg"
+    },
+    {
+        "id": 4,
+        "nombre": "CLP",
+        "precio": 892.51,
+        "img": "PesosChilenos",
+        "rutaImagen": "./imagenes/pesos_clp.jpg"
+    },
+    {
+        "id": 5,
+        "nombre": "BS",
+        "precio": 6.92,
+        "img": "PesosBolivianos",
+        "rutaImagen": "./imagenes/pesos_bs.jpg"
+    },
+    {
+        "id": 6,
+        "nombre": "PYG",
+        "precio": 6093.65,
+        "img": "PesosParaguayos",
+        "rutaImagen": "./imagenes/pesos_pyg.jpg"
+    }
+]

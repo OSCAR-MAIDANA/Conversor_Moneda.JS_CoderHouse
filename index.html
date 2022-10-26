@@ -22,54 +22,51 @@
 
 <body class="fondo">
     <header>
-        <ul class="nav nav-pills nav-justified">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current=" page" href="#">home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href=" #">nosotros</a>
-            </li>
-            <li class="nav-item">
-                <button id="botonMostrarCarrito" type="button" class="btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
-                    carrito
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Productos en el carrito</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              
-                            </div>
-                            <div class="modal-footer">
-                                <button id="botonVaciarCarrito" type="button" class="btn btn-primary">Vaciar
-                                    carrito</button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="carritoIcon"  class ="carritoIcon" fill="currentColor"
+                        class="bi bi-basket-fill carritoIcon" viewBox="0 0 16 16">
+                        <path
+                            d="M5.071 1.243a.5.5 0 0 1 .858.514L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 6h1.717L5.07 1.243zM3.5 10.5a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3z" />
+                    </svg>
                 </div>
-
-            </li>
-        </ul>
-        <h1 class="texto_home"> Prototipo de conversor de monedas para el Mercosur</h1>
-
+            </div>
+        </nav>
     </header>
     <main>
-        <div id="div"></div>
+        <h1 class="texto_home"> Prototipo de conversor de monedas para el Mercosur</h1>
+        <div id="div" class="contenedor"></div>
+        <div id="carrito" class="carritoOff">
+            <h1 id="vacio" class="off">Carrito Vacio</h1>
+            <table id="tablaCarrito" class="on">
+                <thead class="theadCarrito">
+                    <tr>
+                        <th>Imagen</th>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio Total</th>
+                        <th colspan="2">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="carritoTabla"></tbody>
+            </table>
+            <button id="finalizarCompra">finalizarCompra</button>
         </div>
-        <!-- <div>
-            <div id="div">
-            </div>
-        </div> -->
     </main>
     <footer>
     </footer>
-    <script src="./archivos_js/index.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="./archivos_js/index.js" type="module"></script>
+
 </body>
 
 </html>

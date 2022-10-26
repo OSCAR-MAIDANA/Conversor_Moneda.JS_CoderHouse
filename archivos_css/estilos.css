@@ -8,7 +8,6 @@
 }
 
 .contenedor {
-    border: 1px black solid;
     margin: 1em;
     padding: 1em;
     text-align: center;
@@ -24,4 +23,35 @@
     color: black;
     font-family: "Mr Dafoe", cursive;
     font-size: 20px;
+}
+
+.carritoIcon {
+    margin-left: 90vw;
+    width: 2.3vw;
+    height: auto;
+}
+
+.fotoProductoCarrito {
+    width: 5vw;
+    height: auto;
+}
+.on{
+    display: block;
+}
+.off{
+    display: none;
+}
+.carritoOn{
+    display: block;
+    position: fixed;
+    top: 10%;
+    right: 0.2%;
+    width: auto;
+    height: auto;
+    min-height: 30%;
+    max-height: 60%;
+    background-color: whitesmoke;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: scroll;
 }

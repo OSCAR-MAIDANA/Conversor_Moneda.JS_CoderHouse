@@ -1,37 +1,37 @@
 [
     {
         "id": 1,
-        "nombre": "ARS - PesosArgentinos",
-        "precio": 280.0,
+        "nombre": "ARS",
+        "precio": 290.0,
         "imagen": "./imagenes/pesos_ars.jpg"
     },
     {
         "id": 2,
-        "nombre": "REAL - RealesBrasileños",
+        "nombre": "REAL",
         "precio": 0.19,
         "imagen": "./imagenes/reales_br.jpg"
     },
     {
         "id": 3,
-        "nombre": "UYU - PesosUruguayos",
+        "nombre": "UYU",
         "precio": 40.99,
         "imagen": "./imagenes/pesos_uyu.jpg"
     },
     {
         "id": 4,
-        "nombre": "CLP - PesosChilenos",
+        "nombre": "CLP",
         "precio": 892.51,
         "imagen": "./imagenes/pesos_clp.jpg"
     },
     {
         "id": 5,
-        "nombre": "BS - PesosBolivianos",
+        "nombre": "BS",
         "precio": 6.92,
         "imagen": "./imagenes/pesos_bs.jpg"
     },
     {
         "id": 6,
-        "nombre": "PYG - PesosParaguayos",
+        "nombre": "PYG",
         "precio": 6093.65,
         "imagen": "./imagenes/pesos_pyg.jpg"
     }

@@ -1,15 +1,15 @@
-
 const div = document.getElementById("div");
-/* const botonMostrarCarrito = document.getElementById("botonMostrarCarrito"); */
-const botonVaciarCarrito = document.getElementById("botonVaciarCarrito");
 const carritoIcon = document.getElementById("carritoIcon");
 const carritoTabla = document.getElementById("carritoTabla");
 const tablaCarrito = document.getElementById("tablaCarrito");
 const carritoCompras = document.getElementById("carrito")
 const vacio = document.getElementById("vacio")
 const finalizar = document.getElementById("finalizarCompra")
+const finalizarTabla = document.getElementById("tablaFinalBody")
+const tablaFinal = document.getElementById("tablaFinal")
+const btnHome = document.getElementById("btnHome")
 
-
+//FETCH
 const traerProductos = async () => {
     const response = await fetch('./db/productos.json')
     const data = await response.json()
@@ -18,22 +18,14 @@ const traerProductos = async () => {
 }
 const tipoMonedas = await traerProductos();
 
-/* function nuevoProducto(id, nombre, precio, imagen){
-    this.id = id,
-    this.nombre = nombre,
-    this.precio = precio,
-    this.imagen = imagen,
-    this.cantidad = 1
-} */
-
 
 //---CARRITO---//
 const carrito = []
-/* if (div !== null) { */
-/*  const { imagen, nombre, precio, id } = producto */
-tipoMonedas.forEach(producto => {
-    let monedaRenderizada = document.createElement("div")
-    monedaRenderizada.innerHTML = `         
+if (div !== null) {
+    /*  const { imagen, nombre, precio, id } = producto */
+    tipoMonedas.forEach(producto => {
+        let monedaRenderizada = document.createElement("div")
+        monedaRenderizada.innerHTML = `         
              <div class="card" style="width: 18rem;">
                      <img src="${producto.imagen}" class="card-img-top" alt="...">
                      <div class="card-body">
@@ -45,34 +37,40 @@ tipoMonedas.forEach(producto => {
                      </div>
               </div> 
      `
-    div.append(monedaRenderizada);
-    const boton = document.getElementById(producto.id)
-    boton.addEventListener("click", () => comprarProducto(producto))
-})
-/* } */
-
+        div.append(monedaRenderizada);
+        const boton = document.getElementById(producto.id)
+        boton.addEventListener("click", () => comprarProducto(producto))
+    })
+}
+////////////////////////////////////////////////////////////
 const revisarStorage = () => {
     carrito.length = 0
     const storage = JSON.parse(localStorage.getItem("carrito"))
     if (storage !== null) {
-        const carrito = storage
+        carrito = storage
     }
 }
-
+/////////////////////////////////////////////////
+//TOASTIFY
 const comprarProducto = (producto) => {
     const { imagen, precio, nombre, id } = producto
-    /*     Toastify({
-            text: `Se agregó 1 ${producto.nombre} al carrito`,
-            duration: 2000,
-        }).showToast(); */
+    Toastify({
+        destination: "https://github.com/apvarun/toastify-js",
+        close: true,
+        gravity: "bottom", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: "linear-gradient(to right, #000000, #3e3edf)",
+        },
+        text: `Se ha agregado 1 ${producto.nombre} al carrito`,
+        duration: 1000
+    }).showToast();
     let productoComprado = carrito.find(item => item.id === producto.id)
     if (productoComprado === undefined) {
         carrito.push({
             ...producto,
             cantidad: 1,
-            /*  nombre: producto.nombre,
-             precio: producto.precio,
-             imagen: producto.imagen, */
         })
         localStorage.setItem("carrito", JSON.stringify(carrito))
     }
@@ -81,14 +79,9 @@ const comprarProducto = (producto) => {
         productoComprado.cantidad = productoComprado.cantidad + 1
         localStorage.setItem("carrito", JSON.stringify(carrito))
     }
-   dibujarcarrito()
+    dibujarcarrito()
 }
 
-/* botonVaciarCarrito.addEventListener("click", () => {
-    localStorage.clear();
-    carrito.innerHTML = "";
-    alert("productos borrados");
-}) */
 /* let moneda = prompt("Ingrese tipo de moneda a convertir a usd  (sólo monedas del mercosur)");
 let cantidad = parseInt(prompt("Ingrese la cantidad que quiere convertir")); */
 
@@ -134,22 +127,8 @@ while (moneda !== "ESC") {
     } else {
         alert("Ud salio de la sección conversor de moneda")
     }
-}
+}*/
 
-/* tipoMonedas.push(moneda1, moneda2, moneda3, moneda4, moneda5, moneda6); */
-
-// -- filter: filtra todos los elementos que cumplan la condicion -- //
-/* let monedaCotizada = prompt("Ingrese la moneda a consultar la cotizacion");
-let filtrado = tipoMonedas.filter(item => item.name === monedaCotizada); */
-
-//-- Recorre el array y se muestra si el ingreso cumple con la condicion -- //
-/* filtrado.forEach((item) => {
-    let mensaje = `El precio de la ${item.name} es de ${price.value} por dolar`;
-    alert(mensaje);
-})
- */
-
-//NO FUNCIONA!!!
 const sumarProducto = (producto) => {
     let productoOriginal = tipoMonedas.find(item => item.id === producto.id)
     let productoModificar = carrito.find(item => item.id === producto.id)
@@ -158,7 +137,6 @@ const sumarProducto = (producto) => {
     localStorage.setItem("carrito", JSON.stringify(carrito))
     dibujarcarrito()
 }
-//NO FUNCIONA!!!
 const restarProducto = (producto) => {
     let productoOriginal = tipoMonedas.find(item => item.id === producto.id)
     let productoABorrar = carrito.find(item => item.id === producto.id)
@@ -173,7 +151,7 @@ const restarProducto = (producto) => {
 }
 
 
-//tabla para el modal
+//TABLA PARA EL MODAL
 const dibujarcarrito = () => {
     carritoTabla.innerHTML = ''
     carrito.forEach(producto => {
@@ -185,8 +163,8 @@ const dibujarcarrito = () => {
         <td> <p class="nombreProducto"> ${producto.nombre}</p></td>
         <td> <p class="cantidadProducto"> ${producto.cantidad}</p></td>
         <td> <p class="precioProducto"> $${producto.precio}</p></td>
-        <td> <button id="sumar ${producto.id}"class="btn btn-success">+</button></td>
-        <td> <button id="restar${producto.id}"class="btn btn-danger">-</button></td>
+        <td> <button id="sumar${producto.id}" class="btn btn-success">+</button></td>
+        <td> <button id="restar${producto.id}" class="btn btn-danger">-</button></td>
     `
         carritoTabla.append(monedaRenderizada);
         const sumar = document.getElementById(`sumar${producto.id}`)
@@ -195,7 +173,7 @@ const dibujarcarrito = () => {
         restar.addEventListener("click", () => restarProducto(producto))
 
     })
-    if(carrito.length < 1){
+    if (carrito.length < 1) {
         vacio.localName = "on"
         tablaCarrito.className = "off"
     } else {
@@ -204,33 +182,64 @@ const dibujarcarrito = () => {
     }
 }
 
+
 const mostrarCarrito = () => {
     carritoCompras.classList.toggle("carritoOn")
     dibujarcarrito()
 }
 
+// SWIT ALERT
 const finalizarCompra = () => {
-   /*  Swal.fire({
+    Swal.fire({
         title: 'Desea finalizar compra?',
         text: "Finalizar compra!",
         icon: 'info',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
+        confirmButtonText: 'Si, por supuesto',
+        cancelButtonText: 'No,está seguro? Mire que despues va a estar mas caro!',
+    }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-          )
+            Swal.fire(
+                window.location = "http://127.0.0.1:5501/views/comprafinal.html"
+            )
         }
-      }) */
-
+    })
 }
-finalizar.addEventListener("click", finalizarCompra)
-//---- BOTON PARA MOSTRAR CARRITO ---- //
-carritoIcon.addEventListener("click", mostrarCarrito /* () => localStorage.setItem("carrito", JSON.stringify(carrito)) */);
+if (carritoCompras !== null) {
+    finalizar.addEventListener("click", finalizarCompra)
+    carritoIcon.addEventListener("click", mostrarCarrito)
+}
+
+const dibujarTablaFinal = () => {
+    const storage = JSON.parse(localStorage.getItem("carrito"))
+    storage.forEach(producto => {
+      /*   const { imagen, precio, cantidad, id, nombre } = producto */
+        let tablaRenderizada = document.createElement("tr")
+        tablaRenderizada.innerHTML =
+            `         
+        <td> <img class="fotoProductoCarrito" src="${imagen}" alt="imagen producto"></td>
+        <td> <p class="nombreProducto">${nombre}</p></td>
+        <td> <p class="cantidadProducto">${cantidad}</p></td>
+        <td> <p class="precioProducto">$${precio}</p></td>
+        `
+        finalizarTabla.append(tablaRenderizada);
+    })
+}
+
+
+const volverInicio = () => {
+    window.location = "http://127.0.0.1:5501/views/index.html"
+    localStorage.clear();
+}
+
+if (btnHome !== null) {
+    btnHome.addEventListener("click", volverInicio)
+}
+
+if (tablaFinal !== null) {
+    dibujarTablaFinal()
+}
 
 revisarStorage()

@@ -18,13 +18,19 @@
     height: 10vw;
 }
 
-.texto_home {
+.texto_titulo {
+    text-align: center;
+    color: black;
+    font-family: "Mr Dafoe", cursive;
+    font-size: 30px;
+} 
+
+.texto_subtitulo {
     text-align: center;
     color: black;
     font-family: "Mr Dafoe", cursive;
     font-size: 20px;
 }
-
 .carritoIcon {
     margin-left: 90vw;
     width: 2.3vw;
@@ -41,6 +47,10 @@
 .off{
     display: none;
 }
+.carritoOff{
+    display: none;
+}
+
 .carritoOn{
     display: block;
     position: fixed;

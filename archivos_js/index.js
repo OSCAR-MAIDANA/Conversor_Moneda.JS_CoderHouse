@@ -7,13 +7,13 @@ const vacio = document.getElementById("vacio")
 const finalizar = document.getElementById("finalizarCompra")
 const finalizarTabla = document.getElementById("tablaFinalBody")
 const tablaFinal = document.getElementById("tablaFinal")
-const btnHome = document.getElementById("btnHome")
 
-//FETCH
+
+
+//FETCH 
 const traerProductos = async () => {
     const response = await fetch('./db/productos.json')
     const data = await response.json()
-    /*     console.log(data) */
     return data
 }
 const tipoMonedas = await traerProductos();
@@ -22,7 +22,7 @@ const tipoMonedas = await traerProductos();
 //---CARRITO---//
 const carrito = []
 if (div !== null) {
-    /*  const { imagen, nombre, precio, id } = producto */
+    /*    const { imagen, nombre, precio, id } = producto */
     tipoMonedas.forEach(producto => {
         let monedaRenderizada = document.createElement("div")
         monedaRenderizada.innerHTML = `         
@@ -51,9 +51,11 @@ const revisarStorage = () => {
     }
 }
 /////////////////////////////////////////////////
+
+
 //TOASTIFY
 const comprarProducto = (producto) => {
-    const { imagen, precio, nombre, id } = producto
+    /*   const { imagen, precio, nombre, id } = producto */
     Toastify({
         destination: "https://github.com/apvarun/toastify-js",
         close: true,
@@ -155,7 +157,7 @@ const restarProducto = (producto) => {
 const dibujarcarrito = () => {
     carritoTabla.innerHTML = ''
     carrito.forEach(producto => {
-        /* const { imagen, precio, cantidad, id, nombre } = producto */
+        /*       const { imagen, precio, cantidad, id, nombre } = producto */
         let monedaRenderizada = document.createElement("tr")
         monedaRenderizada.innerHTML =
             `         
@@ -165,7 +167,7 @@ const dibujarcarrito = () => {
         <td> <p class="precioProducto"> $${producto.precio}</p></td>
         <td> <button id="sumar${producto.id}" class="btn btn-success">+</button></td>
         <td> <button id="restar${producto.id}" class="btn btn-danger">-</button></td>
-    `
+        `
         carritoTabla.append(monedaRenderizada);
         const sumar = document.getElementById(`sumar${producto.id}`)
         sumar.addEventListener("click", () => sumarProducto(producto))
@@ -174,11 +176,11 @@ const dibujarcarrito = () => {
 
     })
     if (carrito.length < 1) {
-        vacio.localName = "on"
+        vacio.className = "on"
         tablaCarrito.className = "off"
     } else {
         tablaCarrito.className = "on"
-        vacio.localName = "off "
+        vacio.className = "off "
     }
 }
 
@@ -188,9 +190,13 @@ const mostrarCarrito = () => {
     dibujarcarrito()
 }
 
-// SWIT ALERT
+// SWIT ALERT////////////////////////////////////////////////////////
+
 const finalizarCompra = () => {
-    Swal.fire({
+    /*    localStorage.clear()
+       const carrito = vacio.className = "on";
+           tablaCarrito.className = "off" */
+    /* Swal.fire({
         title: 'Desea finalizar compra?',
         text: "Finalizar compra!",
         icon: 'info',
@@ -198,15 +204,15 @@ const finalizarCompra = () => {
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Si, por supuesto',
-        cancelButtonText: 'No,está seguro? Mire que despues va a estar mas caro!',
+        cancelButtonText: 'No ',
     }).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire(
-                window.location = "http://127.0.0.1:5501/views/comprafinal.html"
-            )
-        }
-    })
-}
+            Swal.fire( */
+                localStorage.clear()
+                const carrito = vacio.className = "on"
+                tablaCarrito.className = "off"}
+
+
 if (carritoCompras !== null) {
     finalizar.addEventListener("click", finalizarCompra)
     carritoIcon.addEventListener("click", mostrarCarrito)
@@ -215,31 +221,21 @@ if (carritoCompras !== null) {
 const dibujarTablaFinal = () => {
     const storage = JSON.parse(localStorage.getItem("carrito"))
     storage.forEach(producto => {
-      /*   const { imagen, precio, cantidad, id, nombre } = producto */
+const { imagen, precio, cantidad, id, nombre } = producto
         let tablaRenderizada = document.createElement("tr")
         tablaRenderizada.innerHTML =
             `         
-        <td> <img class="fotoProductoCarrito" src="${imagen}" alt="imagen producto"></td>
-        <td> <p class="nombreProducto">${nombre}</p></td>
-        <td> <p class="cantidadProducto">${cantidad}</p></td>
-        <td> <p class="precioProducto">$${precio}</p></td>
+        <td> <img class="fotoProductoCarrito" src="${producto.imagen}" alt="imagen producto"></td>
+        <td> <p class="nombreProducto">${producto.nombre}</p></td>
+        <td> <p class="cantidadProducto">${producto.cantidad}</p></td>
+        <td> <p class="precioProducto">$${producto.precio}</p></td>
         `
         finalizarTabla.append(tablaRenderizada);
     })
 }
 
-
-const volverInicio = () => {
-    window.location = "http://127.0.0.1:5501/views/index.html"
-    localStorage.clear();
-}
-
-if (btnHome !== null) {
-    btnHome.addEventListener("click", volverInicio)
-}
-
-if (tablaFinal !== null) {
+/* if (tablaFinal !== null) {
     dibujarTablaFinal()
 }
-
-revisarStorage()
+ */
+/* revisarStorage() */

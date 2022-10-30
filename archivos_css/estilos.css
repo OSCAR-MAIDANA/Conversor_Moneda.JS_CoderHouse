@@ -4,7 +4,7 @@
 }
 
 .fondo {
-    background-color: rgb(104, 248, 104);
+    background-color: rgb(160, 155, 155);
 }
 
 .contenedor {
@@ -45,6 +45,12 @@
     display: block;
 }
 .off{
+    display: none;
+}
+.tablaOn{
+    display: block;
+}
+.tablaOff{
     display: none;
 }
 .carritoOff{

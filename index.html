@@ -23,59 +23,57 @@
 
 <body class="fondo">
     <header>
-        <nav class="navbar navbar-expand-lg bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        <ul class="nav nav-pills nav-fill menu">
+
+        <!-- <nav class="navbar navbar-expand-lg bg-light display"> --
+            <!--       <nav class="navbar bg-light">
+            <div class="container-fluid"> -->
+            <li class="nav-item">
+                <a class="navbar-brand" href="./index.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="navbar-brand" href="./views/nosotros.html">Nosotros</a>
+            </li>
+            <li class="nav-item">
+                <a class="navbar-brand" href="./views/preguntas_frecuentes.html">Preguntas Frecuentes</a>
+                <!--   <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
+            </li>
+            <li>
+               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" id="carritoIcon"
+                    class="bi bi-bag carritoIcon" viewBox="0 0 16 16">
+                    <path
+                        d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                </svg> 
+            </li>
+        </ul>
+            <!-- </div> -->
+            <!--      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" 
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <svg xmlns="http://www.w3.org/2000/svg" id="carritoIcon" class="carritoIcon" fill="currentColor"
-                        class="bi bi-basket-fill carritoIcon" viewBox="0 0 16 16">
-                        <path
-                            d="M5.071 1.243a.5.5 0 0 1 .858.514L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 6h1.717L5.07 1.243zM3.5 10.5a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3z" />
-                    </svg>
-                </div>
-            </div>
-        </nav>
+                </button> -->
+           <!--  </div>
+            </nav> -->
     </header>
     <main>
-        <h1 class="texto_titulo"> Conversor de monedas para el Mercosur</h1>
-        <h2 class="texto_subtitulo"> Cotizacion con respecto a 1 usd</h2>
-        <div id="div" class="contenedor"></div>
-        <div id="carrito" class="carritoOff">
+        <h1 class="texto_titulo"> Conversor a dólares para el Mercosur</h1>
+        <div id="div" class="contenedor container-fluid col-lg-8 col-md-6 col-xs-12 "></div> <!-- col-md-8 -->
+        <div id="carrito" class="carritoOff ">
             <h1 id="vacio" class="off">Carrito Vacio</h1>
-            <table id="tablaCarrito" class="tablaOff">
+            <table id="tablaCarrito" class="tablaOff ">
                 <thead class="theadCarrito">
-                    <tr>
-                        <th>Imagen</th>
-                        <th>Producto</th>
-                        <th>Cantidad</th>
-                        <th>Precio Total</th>
+                    <tr class="trModalCarrito">
+                        <th class="itemFlex">Cantidad Usd </th>
+                        <th class="itemFlex">Moneda</th>
+                        <th class="itemFlex">Imagen</th>
+                        <th class="itemFlex">Precio</th>
                         <th colspan="2">Acciones</th>
                     </tr>
                 </thead>
-                <tbody id="carritoTabla"></tbody>
+                <tbody id="carritoTabla" class="carritoTabla"></tbody>
             </table>
             <button id="finalizarCompra">finalizarCompra</button>
         </div>
-<!-- //////////// -->
-        <!-- <table id="tablaFinal" class="on" >
-            <thead class="theadCarrito">
-                <tr>
-                    <th>Imagen</th>
-                    <th>Producto</th>
-                    <th>Cantidad</th>
-                    <th>Precio Total</th>
-                </tr>
-            </thead>
-            <button id="finalizarCarrito">Finalizar</button>
-            <tbody id="tablaFinalBody"></tbody>
-            
-        </table> -->
-        
     </main>
 
     <footer>

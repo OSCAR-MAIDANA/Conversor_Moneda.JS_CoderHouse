@@ -3,16 +3,101 @@
     padding: 0;
 }
 
+
 .fondo {
-    background-color: rgb(160, 155, 155);
+
+    background-image: url(../imagenes/dolar2.jpg);
+    background-size: cover;
 }
 
+.nav {
+    background-color: grey;
+    height: 3.5vw;
+    align-items: center;
+    font-size: 1.5vw;
+}
+
+.nav-item {
+    color: white;
+    font-family: "Mr Dafoe";
+
+}
+
+/* NOSOTROS */
+.textonosotros {
+    font-family: "Mr Dafoe";
+    font-size: 20px;
+}
+
+.textonosotrosp {
+    font-size: larger;
+}
+
+.textoh1nosotros {
+    margin: 15px;
+}
+
+.img_nosotros {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+
+.imgNos1:hover {
+    -webkit-transform: translateX(60px);
+    transform: translateX(60px);
+}
+
+
+.imgNos2:hover {
+    -webkit-transform: translateX(60px);
+    transform: translateX(60px);
+}
+
+.imgNos3:hover {
+    -webkit-transform: translateX(60px);
+    transform: translateX(60px);
+}
+
+
+/* PREGUNTAS FRECUENTES */
+
+.textopreguntasfrecuentes {
+    font-family: "Mr Dafoe";
+    font-size: medium;
+}
+
+.accordion-button:not(.collapsed) {
+    color: wheat;
+    background-color: black;
+}
+
+/* MAIN */
 .contenedor {
     margin: 1em;
     padding: 1em;
     text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
+.card {
+    margin-bottom: 3.7vw;
+    --bs-border-color-translucent:black;
+}
+.card-body{
+    background-color:black;
+  
+}
+.card-title{
+    color: white;
+}
+.card-text{
+    color: white;
+}
 .imagenMoneda {
     width: 19.7vw;
     height: 10vw;
@@ -21,53 +106,90 @@
 .texto_titulo {
     text-align: center;
     color: black;
-    font-family: "Mr Dafoe", cursive;
-    font-size: 30px;
+    font-family: "Mr Dafoe";
+    font-size: 40px;
+    margin-top: 2.5vw;
+    margin-bottom: 2vw;
+}
+
+/* CARRITO */
+.cantidadProducto{
+    display: flex;
+    justify-content: center;
+}
+.nombreProducto{
+    display: flex;
+    justify-content: center;
+}
+.trModalCarrito{
+    align-content:space-around;
+
+}
+.itemFlex{
+  padding-right: 2vw;
+  padding-left: 0.52vw;   
 } 
 
-.texto_subtitulo {
+  
+
+.carritoTabla {
+    display: contents;
     text-align: center;
-    color: black;
-    font-family: "Mr Dafoe", cursive;
-    font-size: 20px;
+
 }
+
 .carritoIcon {
-    margin-left: 90vw;
-    width: 2.3vw;
+    margin-right: 0vw;
+    width: 2.4vw;
     height: auto;
+    color: white;
 }
 
 .fotoProductoCarrito {
     width: 5vw;
     height: auto;
 }
-.on{
+
+.on {
     display: block;
 }
-.off{
-    display: none;
-}
-.tablaOn{
-    display: block;
-}
-.tablaOff{
-    display: none;
-}
-.carritoOff{
+
+.off {
     display: none;
 }
 
-.carritoOn{
+.tablaOn {
+    display: block;
+}
+
+.tablaOff {
+    display: none;
+}
+
+.carritoOff {
+    display: none;
+}
+
+.carritoOn {
     display: block;
     position: fixed;
     top: 10%;
     right: 0.2%;
     width: auto;
     height: auto;
-    min-height: 30%;
-    max-height: 60%;
+    min-height: 5%;
+    max-height: 90%;
     background-color: whitesmoke;
     flex-direction: column;
     justify-content: space-between;
     overflow-y: scroll;
+}
+#vacio{
+    font-family: "Mr Dafoe";
+    font-size: medium;
+}
+#finalizarCompra{
+    font-family: "Mr Dafoe";
+    font-size: medium;
+    display: flex;
 }

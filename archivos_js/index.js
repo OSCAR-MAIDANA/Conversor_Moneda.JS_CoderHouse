@@ -21,18 +21,18 @@ const tipoMonedas = await traerProductos();
 
 //---CARRITO---//
 const carrito = []
-if (div !== null) {
+if (div !== null)  {
     /*    const { imagen, nombre, precio, id } = producto */
     tipoMonedas.forEach(producto => {
         let monedaRenderizada = document.createElement("div")
         monedaRenderizada.innerHTML = `         
-             <div class="card" style="width: 18rem;">
+             <div class="card" style="width: 14rem;">
                      <img src="${producto.imagen}" class="card-img-top" alt="...">
                      <div class="card-body">
                          <h5 class="card-title">${producto.nombre}</h5>
                           <p class="card-text">Precio $: ${producto.precio}</p>
                              <div>
-                                 <button class="btn btn-primary" id= "${producto.id}">Comprar</button>  
+                                 <button class="btn btn-success" id= "${producto.id}">Comprar</button>  
                              </div> 
                      </div>
               </div> 
@@ -42,15 +42,6 @@ if (div !== null) {
         boton.addEventListener("click", () => comprarProducto(producto))
     })
 }
-////////////////////////////////////////////////////////////
-const revisarStorage = () => {
-    carrito.length = 0
-    const storage = JSON.parse(localStorage.getItem("carrito"))
-    if (storage !== null) {
-        carrito = storage
-    }
-}
-/////////////////////////////////////////////////
 
 
 //TOASTIFY
@@ -84,58 +75,11 @@ const comprarProducto = (producto) => {
     dibujarcarrito()
 }
 
-/* let moneda = prompt("Ingrese tipo de moneda a convertir a usd  (sólo monedas del mercosur)");
-let cantidad = parseInt(prompt("Ingrese la cantidad que quiere convertir")); */
-
-/* function conversion(moneda, cantidad) {
-    switch (moneda) {
-        case "ars":
-            let totalArs = Math.round(cantidad / 280);
-            return totalArs
-            break;
-
-        case "real":
-            let totalReal = Math.round(cantidad * 0.19);
-            return totalReal
-            break;
-
-        case "uyu":
-            let totalUyu = Math.round(cantidad / 40.99);
-            return totalUyu
-            break;
-
-        case "clp":
-            let totalClp = Math.round(cantidad / 892.51);
-            return totalClp
-            break;
-
-        case "bs":
-            let totalBs = Math.round(cantidad / 6.92);
-            return totalBs
-            break;
-
-        case "pyg":
-            let totalPyg = Math.round(cantidad / 6093.65);
-            return totalPyg
-            break;
-    }
-}
-while (moneda !== "ESC") {
-    alert(`Ud está convirtiendo la cantidad de $ ${cantidad} ${moneda} y recibe la cantidad de  : 
-    ${conversion(moneda, cantidad)} dolares`);
-    moneda = prompt("Ingrese tipo de moneda a convertir a USD (solo monedas del mercosur)");
-    if (moneda !== "ESC") {
-        cantidad = parseInt(prompt("Ingrese la cantidad que quiere convertir"));
-    } else {
-        alert("Ud salio de la sección conversor de moneda")
-    }
-}*/
-
 const sumarProducto = (producto) => {
     let productoOriginal = tipoMonedas.find(item => item.id === producto.id)
     let productoModificar = carrito.find(item => item.id === producto.id)
     productoModificar.precio = productoModificar.precio + productoOriginal.precio
-    productoModificar.cantidad = productoModificar.cantidad + 1
+    productoModificar.cantidad = productoModificar.cantidad + 1 
     localStorage.setItem("carrito", JSON.stringify(carrito))
     dibujarcarrito()
 }
@@ -160,10 +104,10 @@ const dibujarcarrito = () => {
         /*       const { imagen, precio, cantidad, id, nombre } = producto */
         let monedaRenderizada = document.createElement("tr")
         monedaRenderizada.innerHTML =
-            `         
+            `    
+        <td> <p class="cantidadProducto"> ${producto.cantidad}</p></td> 
+        <td> <p class="nombreProducto"> ${producto.nombre}</p></td>    
         <td> <img class="fotoProductoCarrito" src="${producto.imagen}" alt="imagen producto"> </td>
-        <td> <p class="nombreProducto"> ${producto.nombre}</p></td>
-        <td> <p class="cantidadProducto"> ${producto.cantidad}</p></td>
         <td> <p class="precioProducto"> $${producto.precio}</p></td>
         <td> <button id="sumar${producto.id}" class="btn btn-success">+</button></td>
         <td> <button id="restar${producto.id}" class="btn btn-danger">-</button></td>
@@ -175,7 +119,8 @@ const dibujarcarrito = () => {
         restar.addEventListener("click", () => restarProducto(producto))
 
     })
-    if (carrito.length < 1) {
+
+    if (carrito.length < 1)  {
         vacio.className = "on"
         tablaCarrito.className = "off"
     } else {
@@ -190,52 +135,32 @@ const mostrarCarrito = () => {
     dibujarcarrito()
 }
 
-// SWIT ALERT////////////////////////////////////////////////////////
+// SWIT ALERT
 
 const finalizarCompra = () => {
-    /*    localStorage.clear()
-       const carrito = vacio.className = "on";
-           tablaCarrito.className = "off" */
-    /* Swal.fire({
-        title: 'Desea finalizar compra?',
-        text: "Finalizar compra!",
+    Swal.fire({
+        title: 'Finalizar Compra?',
+        text: "Desea finalizar su compra?",
         icon: 'info',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, por supuesto',
-        cancelButtonText: 'No ',
+        confirmButtonText: 'Si, deseo finalizar',
+        cancelButtonText: 'No, no deseo',
     }).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire( */
-                localStorage.clear()
-                const carrito = vacio.className = "on"
-                tablaCarrito.className = "off"}
+             Swal.fire(
+                localStorage.clear(),
+                vacio.className = "on",
+                tablaCarrito.className = "off",
+                carrito.length = 0,
+            )
+        }
+    })
+}
 
 
 if (carritoCompras !== null) {
     finalizar.addEventListener("click", finalizarCompra)
     carritoIcon.addEventListener("click", mostrarCarrito)
 }
-
-const dibujarTablaFinal = () => {
-    const storage = JSON.parse(localStorage.getItem("carrito"))
-    storage.forEach(producto => {
-const { imagen, precio, cantidad, id, nombre } = producto
-        let tablaRenderizada = document.createElement("tr")
-        tablaRenderizada.innerHTML =
-            `         
-        <td> <img class="fotoProductoCarrito" src="${producto.imagen}" alt="imagen producto"></td>
-        <td> <p class="nombreProducto">${producto.nombre}</p></td>
-        <td> <p class="cantidadProducto">${producto.cantidad}</p></td>
-        <td> <p class="precioProducto">$${producto.precio}</p></td>
-        `
-        finalizarTabla.append(tablaRenderizada);
-    })
-}
-
-/* if (tablaFinal !== null) {
-    dibujarTablaFinal()
-}
- */
-/* revisarStorage() */

@@ -1,0 +1,22 @@
+{
+  "name": "proyecto_conversor_moneda_oscar_maidana_js",
+  "version": "1.0.0",
+  "description": "<h1> PROYECTO CONVERSION DE MONEDAS MERCOSUR - OSCAR MAIDANA </H1>\r <p> Es un proyecto de un conversor para comprar dólares </p>\r <h2> Tecnologias utilizadas</h2>\r <ul>\r     <li>\r     html5\r     css\r     grid\r     boxmodeling\r     bootstrap\r     javaScript\r     </li>\r </ul>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OSCAR-MAIDANA/CONVERSOR_MONEDA.JS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OSCAR-MAIDANA/CONVERSOR_MONEDA.JS/issues"
+  },
+  "homepage": "https://github.com/OSCAR-MAIDANA/CONVERSOR_MONEDA.JS#readme",
+  "dependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

@@ -8,8 +8,6 @@ const finalizar = document.getElementById("finalizarCompra");
 const finalizarTabla = document.getElementById("tablaFinalBody");
 const tablaFinal = document.getElementById("tablaFinal");
 
-
-
 //FETCH
 const traerProductos = async () => {
   const response = await fetch("./db/productos.json");
@@ -20,7 +18,7 @@ const traerProductos = async () => {
 const tipoMonedas = await traerProductos();
 
 //---CARRITO---//
-const carrito = [];
+let carrito = [];
 if (div !== null) {
   /*    const { imagen, nombre, precio, id } = producto */
   tipoMonedas.forEach((producto) => {
@@ -61,7 +59,6 @@ const comprarProducto = (producto) => {
   let productoComprado = carrito.find((item) => item.id === producto.id);
   if (productoComprado === undefined) {
     carrito.push({
-
       ...producto,
       cantidad: 1,
     });
@@ -94,12 +91,10 @@ const restarProducto = (producto) => {
   localStorage.setItem("carrito", JSON.stringify(carrito));
   dibujarcarrito();
 };
- 
-
 
 //TABLA PARA EL MODAL
 const dibujarcarrito = () => {
-  carritoTabla.innerHTML = "";
+ carritoTabla.innerHTML = "";
   carrito.forEach((producto) => {
     /*       const { imagen, precio, cantidad, id, nombre } = producto */
     let monedaRenderizada = document.createElement("tr");
@@ -119,27 +114,32 @@ const dibujarcarrito = () => {
   });
 
   if (carrito.length < 0) {
-    vacio.className = "on"; //on
-    tablaCarrito.className = "off"; //off
-  } else {
-    tablaCarrito.className = "on"; //on
-    vacio.className = "off "; //off
-  }
-}
-//////////////////////////////////////////////////
-const revisarStorage = () => {
-  carrito.length = 0;
-  let storage = JSON.parse(localStorage.getItem("carrito"));
-  if (storage !== null) {
-    storage = carrito;
-  }
-}; 
-///////////////////////////////////////////////
+    vacio.className = "on";
+    tablaCarrito.className = "off";
 
-const mostrarCarrito = () => {
+  } else {
+    tablaCarrito.className = "on";
+    vacio.className = "off ";
+  }
+  
+};
+
+ const mostrarCarrito = () => {
   carritoCompras.classList.toggle("carritoOn");
   dibujarcarrito();
 };
+
+//////////////////////////////////////////////////
+const revisarStorage = () => {
+  carrito.length = 0
+  const storage = JSON.parse(localStorage.getItem("carrito"))
+  if (storage !== null) {
+      carrito = storage
+      /* console.log("carrito") */
+  }
+} 
+///////////////////////////////////////////////
+
 
 // SWIT ALERT
 const finalizarCompra = () => {
@@ -157,7 +157,8 @@ const finalizarCompra = () => {
       Swal.fire(
         localStorage.clear(),
         (vacio.className = "on"),
-        (tablaCarrito.className = "off")((carrito.length = 0))
+        (tablaCarrito.className = "off")
+        ((carrito.length = 0))
       );
     }
   });
@@ -165,9 +166,10 @@ const finalizarCompra = () => {
 
 if (carritoCompras !== null) {
   finalizar.addEventListener("click", finalizarCompra);
-   carritoIcon.addEventListener("click", mostrarCarrito);
+  carritoIcon.addEventListener("click", mostrarCarrito);
 }
 
 //////////////////////////////////////////
-revisarStorage(console.log("hola"));
-//////////////////////////////////////////
+revisarStorage();
+
+/////////////////////////////////////////
